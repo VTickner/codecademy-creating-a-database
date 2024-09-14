@@ -11,9 +11,9 @@ Data Overview:
 - Student Subject Choices: Compulsory and optional subjects for each student
 */
 
-INSERT INTO school (name, street_name, city, postcode, google_map_link, telephone, email, hours, rating)
+INSERT INTO school (id, name, street_name, city, postcode, google_map_link, telephone, email, hours, rating)
 VALUES 
-  ('Greenwood High School', 'Elm Street', 'Greenwood', 'GW12 4AB', 'https://maps.example.com/gw12', '01234 567890', 'info@school.ac.uk', '08:30 - 15:30', 'Outstanding');
+  (1, 'Greenwood High School', 'Elm Street', 'Greenwood', 'GW12 4AB', 'https://maps.example.com/gw12', '01234 567890', 'info@school.ac.uk', '08:30 - 15:30', 'Outstanding');
 
 INSERT INTO person (id, first_name, last_name, email)
 VALUES
@@ -68,173 +68,178 @@ VALUES
   (49, 'Andrew', 'Reed', 'a.reed@school.ac.uk'),  -- Student 29
   (50, 'Amelia', 'Cook', 'a.cook@school.ac.uk');  -- Student 30
 
-INSERT INTO department (name, school_name)
+INSERT INTO department (id, name, school_id)
 VALUES 
-  ('English', 'Greenwood High School'),
-  ('Mathematics', 'Greenwood High School'),
-  ('Science', 'Greenwood High School'),
-  ('Humanities', 'Greenwood High School'),
-  ('Languages', 'Greenwood High School'),
-  ('Performing Arts', 'Greenwood High School'),
-  ('Art & Design', 'Greenwood High School'),
-  ('Business & Computing', 'Greenwood High School'),
-  ('Admin Team', 'Greenwood High School'),
-  ('Leadership Team', 'Greenwood High School'),
-  ('Pastoral Team', 'Greenwood High School'),
-  ('Facilities', 'Greenwood High School');
+  (1, 'English', 1),
+  (2, 'Mathematics', 1),
+  (3, 'Science', 1),
+  (4, 'Humanities', 1),
+  (5, 'Languages', 1),
+  (6, 'Performing Arts', 1),
+  (7, 'Art & Design', 1),
+  (8, 'Business & Computing', 1),
+  (9, 'Admin Team', 1),
+  (10, 'Leadership Team', 1),
+  (11, 'Pastoral Team', 1),
+  (12, 'Facilities', 1);
 
-INSERT INTO job (job_title, department_name)
+INSERT INTO job (id, job_title, department_id)
 VALUES 
-  ('Headteacher', 'Leadership Team'),
-  ('Deputy Headteacher', 'Leadership Team'),
-  ('Governor', 'Admin Team'),
-  ('Head of Year', 'Pastoral Team'),
-  ('English Teacher', 'English'),
-  ('Maths Teacher', 'Mathematics'),
-  ('Science Teacher', 'Science'),
-  ('History Teacher', 'Humanities'),
-  ('French Teacher', 'Languages'),
-  ('Business Studies Teacher', 'Business & Computing'),
-  ('Caretaker', 'Facilities'),
-  ('Head of English', 'English'),
-  ('Head of Mathematics', 'Mathematics'),
-  ('Head of Science', 'Science'),
-  ('Head of Humanities', 'Humanities'),
-  ('Geography Teacher', 'Humanities'),
-  ('German Teacher', 'Languages'),
-  ('Head of Languages', 'Languages'),
-  ('Spanish Teacher', 'Languages'),
-  ('Art Teacher', 'Art & Design');
+  (1, 'Headteacher', 10),
+  (2, 'Deputy Headteacher', 10),
+  (3, 'Governor', 9),
+  (4, 'Head of Year', 11),
+  (5, 'English Teacher', 1),
+  (6, 'Maths Teacher', 2),
+  (7, 'Science Teacher', 3),
+  (8, 'History Teacher', 4),
+  (9, 'French Teacher', 5),
+  (10, 'Business Studies Teacher', 8),
+  (11, 'Caretaker', 12),
+  (12, 'Head of English', 1),
+  (13, 'Head of Mathematics', 2),
+  (14, 'Head of Science', 3),
+  (15, 'Head of Humanities', 4),
+  (16, 'Geography Teacher', 4),
+  (17, 'German Teacher', 5),
+  (18, 'Head of Languages', 5),
+  (19, 'Spanish Teacher', 5),
+  (20, 'Art Teacher', 7);
 
-INSERT INTO staff (id, person_id, school_name)
+INSERT INTO staff (id, person_id, school_id)
 VALUES
-  (1, 1, 'Greenwood High School'),  -- James Smith (Headteacher, Governor)
-  (2, 2, 'Greenwood High School'),  -- Emily Johnson (Governor)
-  (3, 3, 'Greenwood High School'),  -- Robert Brown (Governor)
-  (4, 4, 'Greenwood High School'),  -- Sarah Williams (Governor)
-  (5, 5, 'Greenwood High School'),  -- Michael Jones (Governor)
-  (6, 6, 'Greenwood High School'),  -- Elizabeth Taylor (Deputy Headteacher)
-  (7, 7, 'Greenwood High School'),  -- David Wilson (Head of Science Department)
-  (8, 8, 'Greenwood High School'),  -- Mary Moore (Science Teacher)
-  (9, 9, 'Greenwood High School'),  -- John Anderson (Science Teacher)
-  (10, 10, 'Greenwood High School'),  -- Jennifer Thomas (Head of Mathematics Department)
-  (11, 11, 'Greenwood High School'),  -- Charles Jackson (Maths Teacher)
-  (12, 12, 'Greenwood High School'),  -- Patricia White (Maths Teacher)
-  (13, 13, 'Greenwood High School'),  -- Christopher Harris (Head of Humanities)
-  (14, 14, 'Greenwood High School'),  -- Linda Martin (History Teacher)
-  (15, 15, 'Greenwood High School'),  -- Barbara Thompson (Geography Teacher)
-  (16, 16, 'Greenwood High School'),  -- Susan Garcia (French Teacher)
-  (17, 17, 'Greenwood High School'),  -- Joseph Martinez (German Teacher)
-  (18, 18, 'Greenwood High School'),  -- William Robinson (Head of Languages)
-  (19, 19, 'Greenwood High School'),  -- Dorothy Clark (Spanish Teacher)
-  (20, 20, 'Greenwood High School');  -- Daniel Rodriguez (Art Teacher)
+  (1, 1, 1),  -- James Smith (Headteacher, Governor)
+  (2, 2, 1),  -- Emily Johnson (Governor)
+  (3, 3, 1),  -- Robert Brown (Governor)
+  (4, 4, 1),  -- Sarah Williams (Governor)
+  (5, 5, 1),  -- Michael Jones (Governor)
+  (6, 6, 1),  -- Elizabeth Taylor (Deputy Headteacher)
+  (7, 7, 1),  -- David Wilson (Head of Science Department)
+  (8, 8, 1),  -- Mary Moore (Science Teacher)
+  (9, 9, 1),  -- John Anderson (Science Teacher)
+  (10, 10, 1),  -- Jennifer Thomas (Head of Mathematics Department)
+  (11, 11, 1),  -- Charles Jackson (Maths Teacher)
+  (12, 12, 1),  -- Patricia White (Maths Teacher)
+  (13, 13, 1),  -- Christopher Harris (Head of Humanities)
+  (14, 14, 1),  -- Linda Martin (History Teacher)
+  (15, 15, 1),  -- Barbara Thompson (Geography Teacher)
+  (16, 16, 1),  -- Susan Garcia (French Teacher)
+  (17, 17, 1),  -- Joseph Martinez (German Teacher)
+  (18, 18, 1),  -- William Robinson (Head of Languages)
+  (19, 19, 1),  -- Dorothy Clark (Spanish Teacher)
+  (20, 20, 1);  -- Daniel Rodriguez (Art Teacher)
 
-INSERT INTO staff_job (staff_id, job_title)
+INSERT INTO staff_job (staff_id, job_id)
 VALUES
-  (1, 'Headteacher'),   -- James Smith (Headteacher)
-  (1, 'Governor'),   -- James Smith (Governor)
-  (2, 'Governor'),   -- Emily Johnson (Governor)
-  (3, 'Governor'),   -- Robert Brown (Governor)
-  (4, 'Governor'),   -- Sarah Williams (Governor)
-  (5, 'Governor'),   -- Michael Jones (Governor)
-  (6, 'Deputy Headteacher'),   -- Elizabeth Taylor (Deputy Headteacher)
-  (6, 'Art Teacher'),   -- Elizabeth Taylor (Art Teacher)
-  (7, 'Head of Science'),  -- David Wilson (Head of Science)
-  (7, 'Science Teacher'),  -- David Wilson (Science Teacher)
-  (8, 'Science Teacher'),   -- Mary Moore (Science Teacher)
-  (9, 'Science Teacher'),   -- John Anderson (Science Teacher)
-  (10, 'Head of Mathematics'), -- Jennifer Thomas (Head of Mathematics)
-  (10, 'Maths Teacher'), -- Jennifer Thomas (Maths Teacher)
-  (11, 'Maths Teacher'),  -- Charles Jackson (Maths Teacher)
-  (12, 'Maths Teacher'),  -- Patricia White (Maths Teacher)
-  (13, 'Head of Humanities'),  -- Christopher Harris (Head of Humanities)
-  (13, 'Geography Teacher'),  -- Christopher Harris (Geography Teacher)
-  (13, 'History Teacher'),  -- Christopher Harris (History Teacher)
-  (14, 'History Teacher'),  -- Linda Martin (History Teacher)
-  (15, 'Geography Teacher'),  -- Barbara Thompson (Geography Teacher)
-  (16, 'French Teacher'),  -- Susan Garcia (French Teacher)
-  (17, 'German Teacher'), -- Joseph Martinez (German Teacher)
-  (18, 'Head of Languages'), -- William Robinson (Head of Languages)
-  (18, 'French Teacher'), -- William Robinson (French Teacher)
-  (19, 'Spanish Teacher'), -- Dorothy Clark (Spanish Teacher)
-  (20, 'Art Teacher'); -- Daniel Rodriguez (Art Teacher)
+  (1, 1),   -- James Smith (Headteacher)
+  (1, 3),   -- James Smith (Governor)
+  (2, 3),   -- Emily Johnson (Governor)
+  (3, 3),   -- Robert Brown (Governor)
+  (4, 3),   -- Sarah Williams (Governor)
+  (5, 3),   -- Michael Jones (Governor)
+  (6, 2),   -- Elizabeth Taylor (Deputy Headteacher)
+  (6, 20),   -- Elizabeth Taylor (Art Teacher)
+  (7, 14),  -- David Wilson (Head of Science)
+  (7, 7),  -- David Wilson (Science Teacher)
+  (8, 7),   -- Mary Moore (Science Teacher)
+  (9, 7),   -- John Anderson (Science Teacher)
+  (10, 13), -- Jennifer Thomas (Head of Mathematics)
+  (10, 6), -- Jennifer Thomas (Maths Teacher)
+  (11, 6),  -- Charles Jackson (Maths Teacher)
+  (12, 6),  -- Patricia White (Maths Teacher)
+  (13, 15),  -- Christopher Harris (Head of Humanities)
+  (13, 16),  -- Christopher Harris (Geography Teacher)
+  (13, 8),  -- Christopher Harris (History Teacher)
+  (14, 8),  -- Linda Martin (History Teacher)
+  (15, 16),  -- Barbara Thompson (Geography Teacher)
+  (16, 9),  -- Susan Garcia (French Teacher)
+  (17, 17), -- Joseph Martinez (German Teacher)
+  (18, 13), -- William Robinson (Head of Languages)
+  (18, 9), -- William Robinson (French Teacher)
+  (19, 19), -- Dorothy Clark (Spanish Teacher)
+  (20, 20); -- Daniel Rodriguez (Art Teacher)
 
-INSERT INTO governor (id, person_id, job_title, school_name, start_date, end_date)
+INSERT INTO governor (id, person_id, job_id, school_id, start_date, end_date)
 VALUES 
-  (1, 1, 'Governor', 'Greenwood High School', '2022-01-01', '2026-01-01'),  -- James Smith (Headteacher, Governor)
-  (2, 2, 'Governor', 'Greenwood High School', '2022-01-01', '2025-01-01'),  -- Emily Johnson (Governor)
-  (3, 3, 'Governor', 'Greenwood High School', '2022-01-01', '2024-01-01'),  -- Robert Brown (Governor)
-  (4, 4, 'Governor', 'Greenwood High School', '2022-01-01', '2024-01-01'),  -- Sarah Williams (Governor)
-  (5, 5, 'Governor', 'Greenwood High School', '2022-01-01', '2023-01-01');  -- Michael Jones (Governor)
+  (1, 1, 3, 1, '2022-01-01', '2026-01-01'),  -- James Smith (Headteacher, Governor)
+  (2, 2, 3, 1, '2022-01-01', '2025-01-01'),  -- Emily Johnson (Governor)
+  (3, 3, 3, 1, '2022-01-01', '2024-01-01'),  -- Robert Brown (Governor)
+  (4, 4, 3, 1, '2022-01-01', '2024-01-01'),  -- Sarah Williams (Governor)
+  (5, 5, 3, 1, '2022-01-01', '2023-01-01');  -- Michael Jones (Governor)
 
-INSERT INTO tutor_group (group_code)
+INSERT INTO tutor_group (id, group_code)
 VALUES 
-  ('7A'), ('8A'), ('9A'), ('10A'), ('11A'), ('11B');
+  (1, '7A'),
+  (2, '8A'),
+  (3, '9A'),
+  (4, '10A'),
+  (5, '11A'),
+  (6, '11B');
 
-INSERT INTO student (id, person_id, school_name, tutor_group, year_group)
+INSERT INTO student (id, person_id, school_id, tutor_group_id, year_group)
 VALUES
-  (1, 21, 'Greenwood High School', '11A', 11),  -- Alexander Lewis
-  (2, 22, 'Greenwood High School', '11B', 11),  -- Sophia Walker
-  (3, 23, 'Greenwood High School', '11A', 11),  -- Ethan Young
-  (4, 24, 'Greenwood High School', '11A', 11),  -- Isabella Hall
-  (5, 25, 'Greenwood High School', '11B', 11),  -- Mason Allen
-  (6, 26, 'Greenwood High School', '11A', 11),  -- Olivia King
-  (7, 27, 'Greenwood High School', '11A', 11),  -- Lucas Wright
-  (8, 28, 'Greenwood High School', '11B', 11),  -- Ava Scott
-  (9, 29, 'Greenwood High School', '11B', 11),  -- Henry Green
-  (10, 30, 'Greenwood High School', '11B', 11),  -- Mia Adams
-  (11, 31, 'Greenwood High School', '10A', 10),  -- Thomas Baker
-  (12, 32, 'Greenwood High School', '10A', 10),  -- Ella Gonzalez
-  (13, 33, 'Greenwood High School', '10A', 10),  -- Benjamin Nelson
-  (14, 34, 'Greenwood High School', '10A', 10),  -- Emily Carter
-  (15, 35, 'Greenwood High School', '10A', 10),  -- Samuel Mitchell
-  (16, 36, 'Greenwood High School', '9A', 9),  -- Chloe Perez
-  (17, 37, 'Greenwood High School', '9A', 9),  -- Jacob Roberts
-  (18, 38, 'Greenwood High School', '9A', 9),  -- Sophie Turner
-  (19, 39, 'Greenwood High School', '9A', 9),  -- Michael Phillips
-  (20, 40, 'Greenwood High School', '9A', 9),  -- Grace Campbell
-  (21, 41, 'Greenwood High School', '8A', 8),  -- Matthew Parker
-  (22, 42, 'Greenwood High School', '8A', 8),  -- Lily Evans
-  (23, 43, 'Greenwood High School', '8A', 8),  -- James Edwards
-  (24, 44, 'Greenwood High School', '8A', 8),  -- Alyssa Collins
-  (25, 45, 'Greenwood High School', '8A', 8),  -- Joshua Stewart
-  (26, 46, 'Greenwood High School', '7A', 7),  -- Madison Sanchez
-  (27, 47, 'Greenwood High School', '7A', 7),  -- Logan Morris
-  (28, 48, 'Greenwood High School', '7A', 7),  -- Hannah Rogers
-  (29, 49, 'Greenwood High School', '7A', 7),  -- Andrew Reed
-  (30, 50, 'Greenwood High School', '7A', 7);  -- Amelia Cook
+  (1, 21, 1, 5, 11),  -- Alexander Lewis
+  (2, 22, 1, 6, 11),  -- Sophia Walker
+  (3, 23, 1, 5, 11),  -- Ethan Young
+  (4, 24, 1, 5, 11),  -- Isabella Hall
+  (5, 25, 1, 6, 11),  -- Mason Allen
+  (6, 26, 1, 5, 11),  -- Olivia King
+  (7, 27, 1, 5, 11),  -- Lucas Wright
+  (8, 28, 1, 6, 11),  -- Ava Scott
+  (9, 29, 1, 6, 11),  -- Henry Green
+  (10, 30, 1, 6, 11),  -- Mia Adams
+  (11, 31, 1, 4, 10),  -- Thomas Baker
+  (12, 32, 1, 4, 10),  -- Ella Gonzalez
+  (13, 33, 1, 4, 10),  -- Benjamin Nelson
+  (14, 34, 1, 4, 10),  -- Emily Carter
+  (15, 35, 1, 4, 10),  -- Samuel Mitchell
+  (16, 36, 1, 3, 9),  -- Chloe Perez
+  (17, 37, 1, 3, 9),  -- Jacob Roberts
+  (18, 38, 1, 3, 9),  -- Sophie Turner
+  (19, 39, 1, 3, 9),  -- Michael Phillips
+  (20, 40, 1, 3, 9),  -- Grace Campbell
+  (21, 41, 1, 2, 8),  -- Matthew Parker
+  (22, 42, 1, 2, 8),  -- Lily Evans
+  (23, 43, 1, 2, 8),  -- James Edwards
+  (24, 44, 1, 2, 8),  -- Alyssa Collins
+  (25, 45, 1, 2, 8),  -- Joshua Stewart
+  (26, 46, 1, 1, 7),  -- Madison Sanchez
+  (27, 47, 1, 1, 7),  -- Logan Morris
+  (28, 48, 1, 1, 7),  -- Hannah Rogers
+  (29, 49, 1, 1, 7),  -- Andrew Reed
+  (30, 50, 1, 1, 7);  -- Amelia Cook
 
-INSERT INTO subject (subject)
+INSERT INTO subject (id, subject)
 VALUES 
-  ('English Literature'),
-  ('English Language'),
-  ('Mathematics'),
-  ('Science (Double)'),
-  ('Science (Triple)'),
-  ('History'),
-  ('Geography'),
-  ('French'),
-  ('German'),
-  ('Spanish'),
-  ('Business Studies'),
-  ('Computing');
+  (1, 'English Literature'),
+  (2, 'English Language'),
+  (3, 'Mathematics'),
+  (4, 'Science (Double)'),
+  (5, 'Science (Triple)'),
+  (6, 'History'),
+  (7, 'Geography'),
+  (8, 'French'),
+  (9, 'German'),
+  (10, 'Spanish'),
+  (11, 'Business Studies'),
+  (12, 'Computing');
 
-INSERT INTO student_subject_choice (student_id, subject_choice)
+INSERT INTO student_subject_choice (student_id, subject_id)
 VALUES 
   -- GCSE subjects, so years 10 and 11 only
   -- All students to take English Language, English Literature, Mathematics and do either double or triple science
-  (1, 'English Literature'), (1, 'English Language'), (1, 'Mathematics'), (1, 'Science (Double)'), (1, 'History'), (1, 'French'), (1, 'Business Studies'),  -- Alexander Lewis
-  (2, 'English Literature'), (2, 'English Language'), (2, 'Mathematics'), (2, 'Science (Double)'), (2, 'History'), (2, 'German'), (2, 'Business Studies'),  -- Sophia Walker
-  (3, 'English Literature'), (3, 'English Language'), (3, 'Mathematics'), (3, 'Science (Double)'), (3, 'History'), (3, 'Spanish'), (3, 'Computing'),  -- Ethan Young
-  (4, 'English Literature'), (4, 'English Language'), (4, 'Mathematics'), (4, 'Science (Triple)'), (4, 'History'), (4, 'French'), (4, 'Computing'),  -- Isabella Hall
-  (5, 'English Literature'), (5, 'English Language'), (5, 'Mathematics'), (5, 'Science (Double)'), (5, 'History'), (5, 'German'), (5, 'Business Studies'),  -- Mason Allen
-  (6, 'English Literature'), (6, 'English Language'), (6, 'Mathematics'), (6, 'Science (Triple)'), (6, 'Geography'), (6, 'French'), (6, 'Business Studies'),  -- Olivia King
-  (7, 'English Literature'), (7, 'English Language'), (7, 'Mathematics'), (7, 'Science (Triple)'), (7, 'Geography'), (7, 'French'), (7, 'Business Studies'), -- Lucas Wright
-  (8, 'English Literature'), (8, 'English Language'), (8, 'Mathematics'), (8, 'Science (Double)'), (8, 'History'), (8, 'German'), (8, 'Business Studies'), -- Ava Scott
-  (9, 'English Literature'), (9, 'English Language'), (9, 'Mathematics'), (9, 'Science (Double)'), (9, 'History'), (9, 'German'), (9, 'Business Studies'),  -- Henry Green
-  (10, 'English Literature'), (10, 'English Language'), (10, 'Mathematics'), (10, 'Science (Double)'), (10, 'Geography'), (10, 'Spanish'), (10, 'Computing'),  -- Mia Adams
-  (11, 'English Literature'), (11, 'English Language'), (11, 'Mathematics'), (11, 'Science (Double)'), (11, 'Geography'), (11, 'Spanish'), (11, 'Computing'),  -- Thomas Baker
-  (12, 'English Literature'), (12, 'English Language'), (12, 'Mathematics'), (12, 'Science (Triple)'), (12, 'History'), (12, 'French'), (12, 'Business Studies'),  -- Ella Gonzalez
-  (13, 'English Literature'), (13, 'English Language'), (13, 'Mathematics'), (13, 'Science (Triple)'), (13, 'History'), (13, 'French'), (13, 'Business Studies'),  -- Benjamin Nelson
-  (14, 'English Literature'), (14, 'English Language'), (14, 'Mathematics'), (14, 'Science (Double)'), (14, 'History'), (14, 'French'), (14, 'Business Studies'),  -- Emily Carter
-  (15, 'English Literature'), (15, 'English Language'), (15, 'Mathematics'), (15, 'Science (Double)'), (15, 'History'), (15, 'French'), (15, 'Computing');  -- Samuel Mitchell
+  (1, 1), (1, 2), (1, 3), (1, 4), (1, 6), (1, 8), (1, 11),  -- Alexander Lewis
+  (2, 1), (2, 2), (2, 3), (2, 4), (2, 6), (2, 9), (2, 11),  -- Sophia Walker
+  (3, 1), (3, 2), (3, 3), (3, 4), (3, 6), (3, 10), (3, 12),  -- Ethan Young
+  (4, 1), (4, 2), (4, 3), (4, 5), (4, 6), (4, 8), (4, 12),  -- Isabella Hall
+  (5, 1), (5, 2), (5, 3), (5, 4), (5, 6), (5, 9), (5, 11),  -- Mason Allen
+  (6, 1), (6, 2), (6, 3), (6, 5), (6, 7), (6, 8), (6, 11),  -- Olivia King
+  (7, 1), (7, 2), (7, 3), (7, 5), (7, 7), (7, 8), (7, 11), -- Lucas Wright
+  (8, 1), (8, 2), (8, 3), (8, 4), (8, 6), (8, 9), (8, 11), -- Ava Scott
+  (9, 1), (9, 2), (9, 3), (9, 4), (9, 6), (9, 9), (9, 11),  -- Henry Green
+  (10, 1), (10, 2), (10, 3), (10, 4), (10, 7), (10, 10), (10, 12),  -- Mia Adams
+  (11, 1), (11, 2), (11, 3), (11, 4), (11, 7), (11, 10), (11, 12),  -- Thomas Baker
+  (12, 1), (12, 2), (12, 3), (12, 5), (12, 6), (12, 8), (12, 11),  -- Ella Gonzalez
+  (13, 1), (13, 2), (13, 3), (13, 5), (13, 6), (13, 8), (13, 11),  -- Benjamin Nelson
+  (14, 1), (14, 2), (14, 3), (14, 4), (14, 6), (14, 8), (14, 11),  -- Emily Carter
+  (15, 1), (15, 2), (15, 3), (15, 4), (15, 6), (15, 8), (15, 12);  -- Samuel Mitchell

@@ -1,73 +1,76 @@
--- Create tables based of schema
-
 CREATE TABLE school (
-  name varchar(25) PRIMARY KEY NOT NULL,
+  id integer PRIMARY KEY,
+  name varchar(25) NOT NULL,
   street_name varchar(25),
   city varchar(25),
   postcode varchar(10),
   google_map_link varchar(50),
   telephone varchar(15),
-  email varchar(50) NOT NULL,
+  email varchar(50) NOT NULL UNIQUE,
   hours varchar(25),
   rating varchar(25)
 );
 
 CREATE TABLE person (
-  id integer PRIMARY KEY NOT NULL,
+  id integer PRIMARY KEY,
   first_name varchar(20) NOT NULL,
   last_name varchar(20) NOT NULL,
-  email varchar(50)
+  email varchar(50) UNIQUE
 );
 
 CREATE TABLE staff (
-  id integer PRIMARY KEY NOT NULL,
+  id integer PRIMARY KEY,
   person_id integer NOT NULL REFERENCES person(id),
-  school_name varchar(25) NOT NULL REFERENCES school(name)
+  school_id integer NOT NULL REFERENCES school(id)
 );
 
 CREATE TABLE department (
-  name varchar(50) PRIMARY KEY NOT NULL,
-  school_name varchar(25) NOT NULL REFERENCES school(name)
+  id integer PRIMARY KEY,
+  name varchar(50) NOT NULL,
+  school_id integer NOT NULL REFERENCES school(id)
 );
 
 CREATE TABLE job (
-  job_title varchar(50) PRIMARY KEY NOT NULL,
-  department_name varchar(50) NOT NULL REFERENCES department(name)
+  id integer PRIMARY KEY,
+  job_title varchar(50) NOT NULL,
+  department_id integer NOT NULL REFERENCES department(id)
 );
 
 CREATE TABLE staff_job (
   staff_id integer NOT NULL REFERENCES staff(id),
-  job_title varchar(50) NOT NULL REFERENCES job(job_title),
-  PRIMARY KEY (staff_id, job_title)
+  job_id integer NOT NULL REFERENCES job(id),
+  PRIMARY KEY (staff_id, job_id)
 );
 
 CREATE TABLE governor (
-  id integer PRIMARY KEY NOT NULL,
+  id integer PRIMARY KEY,
   person_id integer NOT NULL REFERENCES person(id),
-  job_title varchar(50) NOT NULL REFERENCES job(job_title),
-  school_name varchar(25) NOT NULL REFERENCES school(name),
+  job_id integer NOT NULL REFERENCES job(id),
+  school_id integer NOT NULL REFERENCES school(id),
   start_date date NOT NULL,
   end_date date NOT NULL
 );
 
 CREATE TABLE tutor_group (
-  group_code varchar(3) UNIQUE PRIMARY KEY NOT NULL
+  id integer PRIMARY KEY,
+  group_code varchar(3) UNIQUE NOT NULL
 );
 
 CREATE TABLE student (
-  id integer PRIMARY KEY NOT NULL,
+  id integer PRIMARY KEY,
   person_id integer NOT NULL REFERENCES person(id),
-  school_name varchar(25) NOT NULL REFERENCES school(name),
-  tutor_group varchar(3) NOT NULL REFERENCES tutor_group(group_code),
+  school_id integer NOT NULL REFERENCES school(id),
+  tutor_group_id integer NOT NULL REFERENCES tutor_group(id),
   year_group integer NOT NULL
 );
 
 CREATE TABLE subject (
-  subject varchar(50) PRIMARY KEY NOT NULL
+  id integer PRIMARY KEY,
+  subject varchar(50) NOT NULL
 );
 
 CREATE TABLE student_subject_choice (
   student_id integer NOT NULL REFERENCES student(id),
-  subject_choice varchar(50) NOT NULL REFERENCES subject(subject),
-  PRIMARY KEY (student_id, subject_choice)
+  subject_id integer NOT NULL REFERENCES subject(id),
+  PRIMARY KEY (student_id, subject_id)
 );
