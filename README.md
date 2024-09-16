@@ -12,7 +12,6 @@ This portfolio project was created as part of [Codecademy's](https://www.codecad
   - [Database data](#database-data)
   - [Database modifications](#database-modifications)
 - [Process](#process)
-  - [Database decisions](#database-decisions)
   - [What I learned](#what-i-learned)
   - [Potential improvements to database](#potential-improvements-to-database)
   - [Useful resources](#useful-resources)
@@ -83,13 +82,15 @@ N.B. I only assigned some of the people in the data to the various roles, for te
 
 - SQL File URL: [School Roles](./school_roles.sql)
 
-## Process
+I also added indexes for the person table to help speed up searches on the database. Indexes were created on the columns first_name, last_name and a combined column index for (last_name, first_name). As the majority of the searches in the database will involve searching and looking up a person's name along with associated data about them.
 
-### Database decisions
+- SQL File URL: [School Indexes](./school_indexes.sql)
+
+## Process
 
 ### What I learned
 
-- I had some issues with setting of access to users. When I tried to test the james_smith role, it had issues with selecting from certain tables. Upon checking using the SQL code below, I found that the `admin_su` role had been assigned to both users but they hadn't been granted `SUPERUSER` access with it, so altered users to have superuser access.
+- I had some issues with setting of access to users. When I tried to test the james_smith role, it had issues with selecting from certain tables. Upon checking, I found that the `admin_su` role had been assigned to both users but they hadn't been granted `SUPERUSER` access with it, so altered users to have superuser access.
 
   ```sql
   CREATE ROLE admin_su WITH SUPERUSER;
@@ -114,7 +115,7 @@ N.B. I only assigned some of the people in the data to the various roles, for te
     USING (pg_has_role(current_user, 'staff_role', 'member'));
   ```
 
-- I learnt how to concatenate results into a string. I did a test query where it showed all subjects for students in year 10 and 11, in a single table cell so that the information about a particular student was all on one row.
+- I learnt how to concatenate results into a string. I did a test query where it showed all subjects for students in years 10 and 11, in a single table cell so that the information about a particular student was all on one row.
 
   ```sql
   string_agg(sub.subject, ' -- ') AS subjects
@@ -122,7 +123,7 @@ N.B. I only assigned some of the people in the data to the various roles, for te
 
 ### Potential improvements to database
 
-- Complete creating all users and granting them appropriate role permission for all the people in the database.
+- Complete creating all users and granting them appropriate role permissions for all the people in the database.
 
 ### Useful resources
 
