@@ -10,7 +10,7 @@ This portfolio project was created as part of [Codecademy's](https://www.codecad
   - [Database design](#database-design)
   - [Database schema](#database-schema)
   - [Database data](#database-data)
-  - [Database modifications]()
+  - [Database modifications](#database-modifications)
 - [Process](#process)
   - [Database decisions](#database-decisions)
   - [What I learned](#what-i-learned)
@@ -38,7 +38,7 @@ For this particular project I decided to extend the [“Designing A Database Fro
 
 ### Database design
 
-The database is based around a hypothetical UK secondary school. I focused the database around people who would be closely associated with the school and how they are linked together to decide on what information to add and how to organise it. I designed the following schema for the database (I've included the [DBML database markup language file](./school.dbml)):
+The database is based around a hypothetical UK secondary school. I focused the database around people who would be closely associated with the school and how they are linked together to decide on what information to add and how to organise it. I designed the following schema for the database, some modifications were made from the original design that I had (I've included the [DBML database markup language file](./school.dbml)):
 
 ![Schema for school database tables](./schema_school.png)
 
@@ -60,15 +60,69 @@ While using ChatGPT helped speed up the generation of data, it didn't keep the d
 
 ### Database modifications
 
+I added several roles to group different access capabilities. Thereby limiting data to the various different groups of people as appropriate when accessing the database. Various test queries were run to check role permissions were set up correctly for accessing only the information expected for the assigned role.
+
+- admin_su (admin super user role):
+  - Can access and change anything in the database
+  - Assigned to Headteacher and Deputy Headteacher
+- student_role:
+  - Can select their own data
+  - Can select staff name, job title and department
+  - Assigned to all students
+- governor_role:
+  - Can select their own data
+  - Can select staff name, job title and department
+  - Can select governor's start and end date
+  - Assigned to all governors
+- staff_role:
+  - Can select their own data
+  - Can select staff name, job title and department
+  - Can view student subject choices
+
+N.B. I only assigned some of the people in the data to the various roles, for testing the role permissions, notes have been left in the file where to create and grant appropriate roles to all users.
+
+- SQL File URL: [School Roles](./school_roles.sql)
+
 ## Process
 
 ### Database decisions
 
-Originally I had most of the tables have id integers as primary keys, but I found that was extremely confusing when trying to add data, and double-checking what was in the table content (when viewing the database information). So I re-started the schema and database creation to simplify it and make the information more easily readable and understandable.
-
 ### What I learned
 
+- I had some issues with setting of access to users. When I tried to test the james_smith role, it had issues with selecting from certain tables. Upon checking using the SQL code below, I found that the `admin_su` role had been assigned to both users but they hadn't been granted `SUPERUSER` access with it, so altered users to have superuser access.
+
+  ```sql
+  CREATE ROLE admin_su WITH SUPERUSER;
+
+  CREATE USER james_smith WITH SUPERUSER LOGIN PASSWORD 'j.smith_password';
+  CREATE USER elizabeth_taylor WITH SUPERUSER LOGIN PASSWORD 'e.taylor_password';
+
+  GRANT admin_su TO james_smith;
+  GRANT admin_su TO elizabeth_taylor;
+  ```
+
+- The most difficult part I had in this project was to make all of the role permissions work correctly. As I was restricting access to tables, and in some cases only allowing parts of tables to be accessed as well by different roles. This led me to learn about various ways to constrain with the use of policies e.g.:
+
+  ```sql
+  CREATE POLICY student_person_policy ON person FOR SELECT
+    USING (LOWER(first_name) || '_' || LOWER(last_name) = CURRENT_USER);
+
+  CREATE POLICY student_staff_policy ON person FOR SELECT
+    USING (EXISTS(SELECT 1 FROM staff WHERE staff.person_id = person.id));
+
+  CREATE POLICY staff_person_select_policy ON person FOR SELECT
+    USING (pg_has_role(current_user, 'staff_role', 'member'));
+  ```
+
+- I learnt how to concatenate results into a string. I did a test query where it showed all subjects for students in year 10 and 11, in a single table cell so that the information about a particular student was all on one row.
+
+  ```sql
+  string_agg(sub.subject, ' -- ') AS subjects
+  ```
+
 ### Potential improvements to database
+
+- Complete creating all users and granting them appropriate role permission for all the people in the database.
 
 ### Useful resources
 

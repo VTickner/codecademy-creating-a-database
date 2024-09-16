@@ -154,7 +154,7 @@ VALUES
   (15, 16),  -- Barbara Thompson (Geography Teacher)
   (16, 9),  -- Susan Garcia (French Teacher)
   (17, 17), -- Joseph Martinez (German Teacher)
-  (18, 13), -- William Robinson (Head of Languages)
+  (18, 18), -- William Robinson (Head of Languages)
   (18, 9), -- William Robinson (French Teacher)
   (19, 19), -- Dorothy Clark (Spanish Teacher)
   (20, 20); -- Daniel Rodriguez (Art Teacher)
