@@ -10,7 +10,8 @@ This portfolio project was created as part of [Codecademy's](https://www.codecad
   - [Database design](#database-design)
   - [Database schema](#database-schema)
   - [Database data](#database-data)
-  - [Database modifications](#database-modifications)
+  - [Database roles](#database-roles)
+  - [Database indexes and constraints](#database-indexes-and-constraints)
 - [Process](#process)
   - [What I learned](#what-i-learned)
   - [Potential improvements to database](#potential-improvements-to-database)
@@ -57,7 +58,7 @@ While using ChatGPT helped speed up the generation of data, it didn't keep the d
 
 - SQL File URL: [School Data](./school_data.sql)
 
-### Database modifications
+### Database roles
 
 I added several roles to group different access capabilities. Thereby limiting data to the various different groups of people as appropriate when accessing the database. Various test queries were run to check role permissions were set up correctly for accessing only the information expected for the assigned role.
 
@@ -82,11 +83,30 @@ N.B. I only assigned some of the people in the data to the various roles, for te
 
 - SQL File URL: [School Roles](./school_roles.sql)
 
+### Database indexes and constraints
+
 I also added indexes for the person table to help speed up searches on the database. Indexes were created on the columns first_name, last_name and a combined column index for (last_name, first_name). As the majority of the searches in the database will involve searching and looking up a person's name along with associated data about them.
+
+The governor table was altered to add a constraint onto the `end_date` so that it would always be later than the current date.
 
 - SQL File URL: [School Indexes](./school_indexes.sql)
 
 ## Process
+
+- Think of an idea to base the database around - what topic will it be focused on.
+- Project brainstorming on what data will be needed, what type of data it is and how to split that up into relevant tables.
+- Create the schema for the database.
+- Set up a GitHub repository.
+- Set up Git version control.
+- Write SQL queries to create the tables in the database.
+- Use ChatGPT to help create data to populate the database.
+- Add roles and grant roles to users.
+  - Test out the role permissions.
+- Add indexes.
+  - Test indexes.
+- Add constraints.
+  - Test constraints.
+- Create blog post about project. (This README file is my post about the project I have created.)
 
 ### What I learned
 
@@ -128,6 +148,7 @@ I also added indexes for the person table to help speed up searches on the datab
 ### Useful resources
 
 - [dbdiagram.io](https://dbdiagram.io/home)
+- [chatgpt](https://chatgpt.com/)
 
 ## Author
 

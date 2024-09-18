@@ -38,3 +38,26 @@ EXPLAIN ANALYZE SELECT *
 FROM person
 WHERE first_name = 'Amelia' 
 -- Execution time = 0.042ms
+
+-- Add constraint so that end_date for governor is after current date
+-- Was unable to initially add constraint as some end dates where before current date so amended data
+SELECT * FROM governor
+WHERE end_date <= CURRENT_DATE;
+-- 3 governors with end date before current date
+
+UPDATE governor
+SET end_date = CURRENT_DATE + INTERVAL '6 months'
+WHERE end_date <= CURRENT_DATE;
+
+SELECT * FROM governor
+WHERE end_date <= CURRENT_DATE;
+-- No governors now with end date before current date
+
+ALTER TABLE governor
+ADD CONSTRAINT check_end_date
+CHECK (end_date > CURRENT_DATE);
+
+-- Check to see constraint added
+SELECT constraint_name, constraint_type
+FROM information_schema.table_constraints
+WHERE table_name = 'governor';
