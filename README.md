@@ -12,6 +12,7 @@ This portfolio project was created as part of [Codecademy's](https://www.codecad
   - [Database data](#database-data)
   - [Database roles](#database-roles)
   - [Database indexes and constraints](#database-indexes-and-constraints)
+  - [Database maintenance]()
 - [Process](#process)
   - [What I learned](#what-i-learned)
   - [Potential improvements to database](#potential-improvements-to-database)
@@ -91,6 +92,14 @@ The governor table was altered to add a constraint onto the `end_date` so that i
 
 - SQL File URL: [School Indexes](./school_indexes.sql)
 
+### Database maintenance
+
+Database maintenance consists of checking table sizes, analysing tables to check for dead tuples and then using `VACUUM` to tidy up and free up space within the database.
+
+N.B. As the database currently consists of a small amount of data and no large data changes the maintenance will not have a significant impact on speed and space of the database. However, for more significant amounts of data carrying out such maintenance would have a more significant impact.
+
+- SQL File URL: [School Maintenance](./school_maintenance.sql)
+
 ## Process
 
 - Think of an idea to base the database around - what topic will it be focused on.
@@ -106,6 +115,10 @@ The governor table was altered to add a constraint onto the `end_date` so that i
   - Test indexes.
 - Add constraints.
   - Test constraints.
+- Carry out database maintenance:
+  - Check table sizes.
+  - Check for dead tuples.
+  - Vacuum to tidy up database and free up space.
 - Create blog post about project. (This README file is my post about the project I have created.)
 
 ### What I learned
@@ -139,6 +152,20 @@ The governor table was altered to add a constraint onto the `end_date` so that i
 
   ```sql
   string_agg(sub.subject, ' -- ') AS subjects
+  ```
+
+- I also learnt how to print out size of all tables at once:
+  ```sql
+  SELECT
+    table_name,
+    pg_size_pretty(pg_total_relation_size(table_schema || '.' || table_name)) AS total_size
+  FROM
+      information_schema.tables
+  WHERE
+      table_type = 'BASE TABLE'
+      AND table_schema NOT IN ('pg_catalog', 'information_schema')
+  ORDER BY
+      pg_total_relation_size(table_schema || '.' || table_name) DESC;
   ```
 
 ### Potential improvements to database
