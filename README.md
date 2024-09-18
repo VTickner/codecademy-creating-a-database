@@ -12,7 +12,7 @@ This portfolio project was created as part of [Codecademy's](https://www.codecad
   - [Database data](#database-data)
   - [Database roles](#database-roles)
   - [Database indexes and constraints](#database-indexes-and-constraints)
-  - [Database maintenance]()
+  - [Database maintenance](#database-maintenance)
 - [Process](#process)
   - [What I learned](#what-i-learned)
   - [Potential improvements to database](#potential-improvements-to-database)
