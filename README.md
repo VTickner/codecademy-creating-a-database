@@ -171,6 +171,8 @@ N.B. As the database currently consists of a small amount of data and no large d
 ### Potential improvements to database
 
 - Complete creating all users and granting them appropriate role permissions for all the people in the database.
+- Depending upon regular searches further indexes could be created to speed up searches.
+- More thorough analysis of database maintenance to take place if a significantly larger dataset used.
 
 ### Useful resources
 
